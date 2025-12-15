@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scissors Tournament</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Rock-Paper-Scissors Tournament</h1>
+        
+        <!-- Game Setup Section -->
+        <div class="game-setup" id="gameSetup">
+            <h2>Game Setup</h2>
+            <div class="player-inputs">
+                <div class="input-group">
+                    <label for="player1Name">Player 1 Name:</label>
+                    <input type="text" id="player1Name" placeholder="Enter Player 1 name" />
+                </div>
+                <div class="input-group">
+                    <label for="player2Name">Player 2 Name:</label>
+                    <input type="text" id="player2Name" placeholder="Enter Player 2 name" />
+                </div>
+            </div>
+            <button id="startGameBtn" class="btn btn-primary">Start New Game</button>
+            <p class="info-text" id="winnerRetention"></p>
+        </div>
+
+        <!-- Game Play Section -->
+        <div class="game-play" id="gamePlay" style="display: none;">
+            <h2>Game in Progress</h2>
+            <div class="game-info">
+                <p><strong>Player 1:</strong> <span id="currentPlayer1"></span></p>
+                <p><strong>Player 2:</strong> <span id="currentPlayer2"></span></p>
+                <p><strong>Round:</strong> <span id="roundNumber">0</span> / 10</p>
+            </div>
+            
+            <div class="scores">
+                <div class="score-box">
+                    <h3 id="p1ScoreName">Player 1</h3>
+                    <div class="score" id="player1Score">0</div>
+                </div>
+                <div class="score-box">
+                    <h3 id="p2ScoreName">Player 2</h3>
+                    <div class="score" id="player2Score">0</div>
+                </div>
+            </div>
+
+            <div class="choice-section">
+                <h3>Player 1 - Make Your Choice:</h3>
+                <div class="choices">
+                    <button class="choice-btn" data-choice="rock">✊ Rock</button>
+                    <button class="choice-btn" data-choice="paper">✋ Paper</button>
+                    <button class="choice-btn" data-choice="scissors">✌️ Scissors</button>
+                </div>
+            </div>
+
+            <div class="round-result" id="roundResult" style="display: none;">
+                <h3>Round Result</h3>
+                <p id="resultText"></p>
+                <p><strong>Player 1 chose:</strong> <span id="p1Choice"></span></p>
+                <p><strong>Player 2 chose:</strong> <span id="p2Choice"></span></p>
+            </div>
+
+            <div class="game-result" id="gameResult" style="display: none;">
+                <h2>🏆 Game Complete! 🏆</h2>
+                <p class="winner-text" id="gameWinnerText"></p>
+                <button id="newGameBtn" class="btn btn-primary">Start New Game</button>
+            </div>
+        </div>
+
+        <!-- Leaderboard Section -->
+        <div class="leaderboard-section">
+            <h2>📊 Tournament Leaderboard</h2>
+            <button id="refreshLeaderboard" class="btn btn-secondary">Refresh Leaderboard</button>
+            
+            <div class="leaderboard-container">
+                <div class="leaderboard-column">
+                    <h3>Sorted by Name (A-Z)</h3>
+                    <table class="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Player Name</th>
+                                <th>Total Score</th>
+                                <th>Games Won</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboardByName">
+                            <tr>
+                                <td colspan="4" class="empty-message">No players yet. Start a game!</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="leaderboard-column">
+                    <h3>Sorted by Score (High to Low)</h3>
+                    <table class="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Player Name</th>
+                                <th>Total Score</th>
+                                <th>Games Won</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboardByScore">
+                            <tr>
+                                <td colspan="4" class="empty-message">No players yet. Start a game!</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+</body>
+</html>
